@@ -1,16 +1,22 @@
 import streamlit as st
+from PIL import Image
 
-st.markdown("""
-╔═══╦╗─╔═══╗───╔═╗────────╔════╗──────────────╔═══╗
-║╔═╗║║─║╔═╗║───║╔╝────────║╔╗╔╗║──────────────║╔═╗║
-║║─║║║─║╚══╦══╦╝╚╦╗╔╗╔╦══╗╚╝║║╠╩═╦╗╔╦═╦╦══╦╗╔╗║║─╚╬══╦╗╔╦══╦══╦═╗╔╗─╔╗
-║╚═╝║║─╚══╗║╔╗╠╗╔╣╚╝╚╝║╔╗║──║║║╔╗║║║║╔╬╣══╣╚╝║║║─╔╣╔╗║╚╝║╔╗║╔╗║╔╗╣║─║║
-║╔═╗║╚╗║╚═╝║╔╗║║║╚╗╔╗╔╣╔╗║──║║║╚╝║╚╝║║║╠══║║║║║╚═╝║╚╝║║║║╚╝║╔╗║║║║╚═╝║
-╚╝─╚╩═╝╚═══╩╝╚╝╚╝─╚╝╚╝╚╝╚╝──╚╝╚══╩══╩╝╚╩══╩╩╩╝╚═══╩══╩╩╩╣╔═╩╝╚╩╝╚╩═╗╔╝
-────────────────────────────────────────────────────────║║───────╔═╝║
-────────────────────────────────────────────────────────╚╝───────╚══╝
-""")
+# 🎨 خلفية الصفحة
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url("https://images.unsplash.com/photo-1506744038136-46273834b3fb");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
+# 💬 باقي التطبيق
 st.title("Welcome to Al Safwa Tourism Company 🧳")
 
 days = st.number_input("How many days will you stay?", min_value=1, max_value=365, step=1)
@@ -18,22 +24,24 @@ preference = st.selectbox("Do you prefer a sea or mountain view?", ["Sea", "Moun
 budget = st.selectbox("What is your budget?", ["Large", "Medium", "Small"])
 
 if st.button("Get Recommendation"):
+    st.subheader("Based on your preferences:")
+
     if preference.lower() == "sea":
         if budget.lower() == "large":
-            st.success("We recommend Maldives.🏝️ 🏝️ 🏝️")
+            st.success("🏝 Maldives")
         elif budget.lower() == "medium":
-            st.success("We recommend Turkiye. 🏖️ 🏖️ 🏖️")    
-        elif budget.lower() == "small":
-            st.success("We recommend Dahab. 🌅 🌅 🌅") 
+            st.success("🏖 Turkiye")
+        else:
+            st.success("🌅 Dahab")
     elif preference.lower() == "mountain":
         if budget.lower() == "large":
-            st.success("We suggest you visit Switzerland. 🏞️ 🏞️ 🏞️")
-        elif budget.lower() == "medium": 
-            st.success("We suggest you visit Georgia. 🌄 🌄 🌄") 
-        elif budget.lower() == "small":
-            st.success("We suggest you visit Mount St. Catherine. 🏔️ 🏔️ 🏔️ ")
-    st.info("Thank you for choosing our company. 😊")
+            st.success("🏞 Switzerland")
+        elif budget.lower() == "medium":
+            st.success("🌄 Georgia")
+        else:
+            st.success("🏔 Mount St. Catherine")
 
+    st.info("Thank you for choosing Al Safwa 😊")
 
               
                
